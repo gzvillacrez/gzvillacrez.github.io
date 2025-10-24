@@ -13,21 +13,21 @@
             --blanco: #ffffff;
             --negro: #333333;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: var(--gris-claro);
             color: var(--negro);
             line-height: 1.6;
         }
-        
-        /* Navegación */
+
+        /* ==== NAVBAR ==== */
         header {
             background-color: var(--verde-militar);
             color: var(--blanco);
@@ -37,7 +37,7 @@
             z-index: 100;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
@@ -46,85 +46,180 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-        
+
         .logo img {
             height: 60px;
             width: auto;
         }
-        
+
         .logo h1 {
             font-size: 1.5rem;
             font-weight: 700;
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-        
+
         .nav-links a {
             color: var(--blanco);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
         }
-        
+
         .nav-links a:hover {
             color: var(--amarillo-dorado);
         }
-        
+
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
         }
 
-        /* --- HERO PERSONALIZADO --- */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                        url('imagenes/chavin.jpg') no-repeat center center/cover;
-            color: var(--blanco);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            text-align: center;
-            padding: 0 2rem;
-        }
+        /* ==== HERO ACTUALIZADO ==== */
+   <!-- OPCIÓN 2: HERO CON VIDEO DE FONDO -->
+<!-- Reemplaza la sección hero actual con este código -->
 
-        .hero-overlay {
-            z-index: 2;
-        }
+<style>
+    /* Hero Section con Video */
+    .hero-video {
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+    }
 
-        .hero .lema {
-            font-size: 3rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-            margin-bottom: 2rem;
-            letter-spacing: 3px;
-            animation: fadeIn 2s ease-in-out;
-        }
+    .hero-video-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        object-fit: cover;
+    }
 
+    .hero-video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(45, 80, 22, 0.7), rgba(26, 52, 9, 0.8));
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Control de video */
+    .video-control {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        backdrop-filter: blur(10px);
+    }
+
+    .video-control:hover {
+        background: var(--amarillo-oro);
+        border-color: var(--amarillo-oro);
+        transform: scale(1.1);
+    }
+
+    .video-control i {
+        color: white;
+        font-size: 1.2rem;
+    }
+</style>
+
+<!-- HTML del Hero con Video -->
+<section id="inicio" class="hero-video">
+    <!-- Video de fondo -->
+    <video class="hero-video-bg" autoplay muted loop playsinline id="heroVideo">
+        <!-- Opción 1: Video local (coloca tu video en la misma carpeta) -->
+        <source src="hero-video.mp4" type="video/mp4">
+        
+        <!-- Opción 2: Video desde URL -->
+        <!-- <source src="https://tusitio.com/video.mp4" type="video/mp4"> -->
+        
+        <!-- Fallback para navegadores antiguos -->
+        Tu navegador no soporta videos HTML5.
+    </video>
+    
+    <div class="hero-video-overlay"></div>
+    
+    <div class="hero-content">
+        <h1>FORJANDO LÍDERES DEL MAÑANA</h1>
+        <p>Disciplina • Honor • Excelencia Académica</p>
+        <a href="#contacto" class="cta-button">¡INSCRÍBETE AHORA!</a>
+    </div>
+    
+    <!-- Control de pausa/reproducción -->
+    <div class="video-control" onclick="toggleVideo()">
+        <i class="fas fa-pause" id="videoIcon"></i>
+    </div>
+</section>
+
+<script>
+    // Control de video
+    function toggleVideo() {
+        const video = document.getElementById('heroVideo');
+        const icon = document.getElementById('videoIcon');
+        
+        if (video.paused) {
+            video.play();
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+        } else {
+            video.pause();
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+        }
+    }
+</script>
+
+        /* Animación de aparición */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Banner desplazable --- */
+        /* ==== Banner desplazable ==== */
         .scroll-banner {
             position: absolute;
             bottom: 0;
             width: 100%;
-            background-color: rgba(255, 215, 0, 0.85);
+            background-color: rgba(255, 215, 0, 0.9);
             color: var(--verde-militar);
             font-weight: bold;
             font-size: 1.1rem;
@@ -148,31 +243,11 @@
             to { transform: translateX(-100%); }
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--amarillo-dorado);
-            color: var(--verde-militar);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #c19b2e;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Resto de secciones */
+        /* Resto de estilos originales intactos */
         section {
             padding: 5rem 2rem;
         }
 
-        /* Footer */
         footer {
             background-color: var(--verde-militar);
             color: var(--blanco);
@@ -199,24 +274,71 @@
                     <li><a href="#testimonios">Testimonios</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
+                <div class="mobile-menu"><i class="fas fa-bars"></i></div>
             </nav>
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO actualizado -->
     <section id="inicio" class="hero">
-        <div class="hero-overlay">
-            <h2 class="lema">Honor, Disciplina y Lealtad</h2>
-            <a href="#contacto" class="btn">Solicitar Información</a>
-        </div>
+        <h2>Honor, Disciplina y Lealtad</h2>
+        <a href="#contacto" class="btn">Solicitar Información</a>
         <div class="scroll-banner">
             <p>📢 Admisión 2026 abierta — Primaria y Secundaria | Formación Pre-Policial y Militar | Sede: Villa El Salvador</p>
         </div>
     </section>
 
-    <!-- Aquí continúan tus otras secciones (Nosotros, Programas, Valores, Galería, etc.) -->
+    <!-- 🔽 Aquí siguen TODAS tus secciones originales -->
+    <!-- Sobre Nosotros -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <p>El Colegio Chavín de Huántar combina una sólida formación académica con valores patrióticos, disciplina y honor...</p>
+        </div>
+    </section>
+
+    <!-- Programas -->
+    <section id="programas" class="programs">
+        <div class="container">
+            <h2 class="section-title">Programas Académicos</h2>
+            <p>Programas de formación militar, policial y académica con enfoque patriótico y disciplinario.</p>
+        </div>
+    </section>
+
+    <!-- Valores -->
+    <section id="valores" class="values">
+        <div class="container">
+            <h2 class="section-title">Valores Institucionales</h2>
+            <p>Honor, Disciplina, Lealtad y Patriotismo nos definen como institución.</p>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Galería Fotográfica</h2>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimonios</h2>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Colegio Chavín de Huántar - Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
