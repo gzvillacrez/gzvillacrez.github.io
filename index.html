@@ -85,34 +85,69 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-        
-        /* Hero Section */
+
+        /* --- HERO PERSONALIZADO --- */
         .hero {
             height: 80vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1582053433976-0c6c0b1b4d7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('imagenes/chavin.jpg') no-repeat center center/cover;
             color: var(--blanco);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
             text-align: center;
             padding: 0 2rem;
         }
-        
-        .hero-content {
-            max-width: 800px;
+
+        .hero-overlay {
+            z-index: 2;
         }
-        
-        .hero h2 {
+
+        .hero .lema {
             font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
             margin-bottom: 2rem;
+            letter-spacing: 3px;
+            animation: fadeIn 2s ease-in-out;
         }
-        
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Banner desplazable --- */
+        .scroll-banner {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(255, 215, 0, 0.85);
+            color: var(--verde-militar);
+            font-weight: bold;
+            font-size: 1.1rem;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+        }
+
+        .scroll-banner p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollText 15s linear infinite;
+        }
+
+        .scroll-banner:hover p {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollText {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
         .btn {
             display: inline-block;
             background-color: var(--amarillo-dorado);
@@ -125,535 +160,27 @@
             transition: all 0.3s;
             cursor: pointer;
         }
-        
+
         .btn:hover {
             background-color: #c19b2e;
             transform: translateY(-3px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
-        /* Secciones generales */
+
+        /* Resto de secciones */
         section {
             padding: 5rem 2rem;
         }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--verde-militar);
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--amarillo-dorado);
-            margin: 0.5rem auto;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Sobre Nosotros */
-        .about {
-            background-color: var(--blanco);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .about-text h3 {
-            color: var(--verde-militar);
-            margin-bottom: 1rem;
-        }
-        
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: var(--gris-claro);
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--verde-militar);
-        }
-        
-        .stat-text {
-            font-size: 1rem;
-            color: var(--negro);
-        }
-        
-        /* Programas */
-        .programs {
-            background-color: var(--gris-claro);
-        }
-        
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .program-card {
-            background-color: var(--blanco);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .program-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .program-img {
-            height: 200px;
-            background-color: var(--verde-militar);
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .program-content {
-            padding: 1.5rem;
-        }
-        
-        .program-content h3 {
-            color: var(--verde-militar);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Valores */
-        .values {
-            background-color: var(--blanco);
-        }
-        
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .value-card {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--gris-claro);
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        
-        .value-card:hover {
-            background-color: var(--verde-militar);
-            color: var(--blanco);
-        }
-        
-        .value-card:hover .value-icon {
-            color: var(--amarillo-dorado);
-        }
-        
-        .value-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--verde-militar);
-            transition: color 0.3s;
-        }
-        
-        /* Galería */
-        .gallery {
-            background-color: var(--gris-claro);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .gallery-item {
-            height: 200px;
-            background-color: var(--verde-militar);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Testimonios */
-        .testimonials {
-            background-color: var(--blanco);
-        }
-        
-        .testimonials-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 2rem;
-            padding: 1rem 0;
-            scroll-snap-type: x mandatory;
-        }
-        
-        .testimonial-card {
-            min-width: 300px;
-            background-color: var(--gris-claro);
-            padding: 2rem;
-            border-radius: 8px;
-            scroll-snap-align: start;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--verde-militar);
-        }
-        
-        .author-info h4 {
-            color: var(--verde-militar);
-        }
-        
-        /* Contacto */
-        .contact {
-            background-color: var(--gris-claro);
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-form {
-            background-color: var(--blanco);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--verde-militar);
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--verde-militar);
-            color: var(--blanco);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--verde-militar);
-            color: var(--blanco);
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .social-link:hover {
-            background-color: var(--amarillo-dorado);
-            transform: translateY(-3px);
-        }
-        
-        /* Mapa */
-        .map {
-            height: 400px;
-            background-color: #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        /* Asistente Virtual */
-        .chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--verde-militar);
-            color: var(--blanco);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-        
-        .chatbot:hover {
-            background-color: var(--amarillo-dorado);
-            transform: scale(1.1);
-        }
-        
-        .chatbot-window {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 450px;
-            background-color: var(--blanco);
-            border-radius: 10px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .chatbot-header {
-            background-color: var(--verde-militar);
-            color: var(--blanco);
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chatbot-close {
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
-        .chatbot-body {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .chat-message {
-            max-width: 80%;
-            padding: 0.8rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .bot-message {
-            background-color: var(--gris-claro);
-            align-self: flex-start;
-        }
-        
-        .user-message {
-            background-color: var(--amarillo-dorado);
-            align-self: flex-end;
-        }
-        
-        .chatbot-footer {
-            padding: 1rem;
-            border-top: 1px solid #ddd;
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .chatbot-footer input {
-            flex: 1;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-        }
-        
-        .chatbot-footer button {
-            background-color: var(--verde-militar);
-            color: var(--blanco);
-            border: none;
-            border-radius: 20px;
-            padding: 0 1rem;
-            cursor: pointer;
-        }
-        
+
         /* Footer */
         footer {
             background-color: var(--verde-militar);
             color: var(--blanco);
             padding: 3rem 2rem 1rem;
         }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-logo img {
-            height: 50px;
-            width: auto;
-        }
-        
-        .footer-links h3,
-        .footer-contact h3 {
-            margin-bottom: 1rem;
-            color: var(--amarillo-dorado);
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-links a {
-            color: var(--blanco);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--amarillo-dorado);
-        }
-        
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--verde-militar);
-                padding: 1rem 0;
-                text-align: center;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .chatbot-window {
-                width: 300px;
-                height: 400px;
-            }
-        }
     </style>
 </head>
+
 <body>
     <!-- Navegación -->
     <header>
@@ -679,427 +206,17 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h2>Formando Líderes con Honor y Disciplina</h2>
-            <p>El Colegio Chavín de Huántar ofrece educación pre-policial-militar de excelencia, formando ciudadanos íntegros y preparados para servir a la patria.</p>
+        <div class="hero-overlay">
+            <h2 class="lema">Honor, Disciplina y Lealtad</h2>
             <a href="#contacto" class="btn">Solicitar Información</a>
         </div>
-    </section>
-
-    <!-- Sobre Nosotros -->
-    <section id="nosotros" class="about">
-        <div class="container">
-            <h2 class="section-title">Sobre Nosotros</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Más de 20 años formando líderes</h3>
-                    <p>El Colegio Chavín de Huántar es una institución educativa pre-policial-militar que combina una sólida formación académica con valores patrióticos, disciplina y honor. Nuestro modelo educativo prepara a los estudiantes para ingresar a las fuerzas armadas y policiales, o para destacar en cualquier ámbito profesional.</p>
-                    <p>Nuestro compromiso es formar ciudadanos íntegros, responsables y comprometidos con el desarrollo de nuestra nación.</p>
-                </div>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">25+</div>
-                        <div class="stat-text">Años de Experiencia</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98%</div>
-                        <div class="stat-text">Ingreso a FF.AA.</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">1500+</div>
-                        <div class="stat-text">Egresados</div>
-                    </div>
-                </div>
-            </div>
+        <div class="scroll-banner">
+            <p>📢 Admisión 2026 abierta — Primaria y Secundaria | Formación Pre-Policial y Militar | Sede: Villa El Salvador</p>
         </div>
     </section>
 
-    <!-- Programas Académicos -->
-    <section id="programas" class="programs">
-        <div class="container">
-            <h2 class="section-title">Programas Académicos</h2>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1582053433976-0c6c0b1b4d7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="program-content">
-                        <h3>Educación Secundaria Militar</h3>
-                        <p>Programa integral que combina el currículo nacional con formación militar, preparando a los estudiantes para ingresar a las escuelas de oficiales.</p>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1540324155972-2b74915c6f59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="program-content">
-                        <h3>Preparación Policial</h3>
-                        <p>Formación especializada para el ingreso a las escuelas de la Policía Nacional, con énfasis en valores cívicos y procedimientos policiales.</p>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="program-content">
-                        <h3>Instrucción de Orden Cerrado</h3>
-                        <p>Desarrollo de disciplina, coordinación y trabajo en equipo a través de ejercicios de formación y desplazamiento en grupo.</p>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="program-content">
-                        <h3>Educación Física Militar</h3>
-                        <p>Programa de acondicionamiento físico diseñado para desarrollar resistencia, fuerza y habilidades necesarias para las fuerzas armadas.</p>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="program-content">
-                        <h3>Tiro Deportivo</h3>
-                        <p>Instrucción en el manejo seguro de armas de fuego y desarrollo de habilidades de puntería bajo supervisión profesional.</p>
-                    </div>
-                </div>
-                <div class="program-card">
-                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1551524164-6ca5f2c47697?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="program-content">
-                        <h3>Liderazgo y Estrategia</h3>
-                        <p>Desarrollo de habilidades de mando, toma de decisiones y pensamiento estratégico aplicado a situaciones reales.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Valores Institucionales -->
-    <section id="valores" class="values">
-        <div class="container">
-            <h2 class="section-title">Valores Institucionales</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Honor</h3>
-                    <p>Actuar con integridad y rectitud en todas las circunstancias, manteniendo siempre la palabra empeñada.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-fist-raised"></i>
-                    </div>
-                    <h3>Disciplina</h3>
-                    <p>Cumplir con responsabilidad las normas y deberes, desarrollando autocontrol y perseverancia.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Lealtad</h3>
-                    <p>Ser fiel a los principios institucionales, a los compañeros y a la patria por encima de todo.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-flag"></i>
-                    </div>
-                    <h3>Patriotismo</h3>
-                    <p>Amor y dedicación a la patria, trabajando siempre por su desarrollo y defensa.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galería -->
-    <section id="galeria" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Galería Fotográfica</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1582053433976-0c6c0b1b4d7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1540324155972-2b74915c6f59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1551524164-6ca5f2c47697?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonios -->
-    <section id="testimonios" class="testimonials">
-        <div class="container">
-            <h2 class="section-title">Testimonios</h2>
-            <div class="testimonials-slider">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"El Colegio Chavín de Huántar formó a mi hijo con valores sólidos y disciplina. Hoy es un oficial ejemplar en la Marina de Guerra."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"></div>
-                        <div class="author-info">
-                            <h4>Carlos Mendoza</h4>
-                            <p>Padre de Familia</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"La formación que recibí me preparó no solo para ingresar a la PNP, sino para enfrentar cualquier desafío en la vida con integridad y determinación."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"></div>
-                        <div class="author-info">
-                            <h4>Ana Torres</h4>
-                            <p>Egresada - Oficial PNP</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Como cadete, valoro la disciplina y el compañerismo que se fomenta en esta institución. Estamos preparados para servir a nuestro país."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar"></div>
-                        <div class="author-info">
-                            <h4>Luis Ramírez</h4>
-                            <p>Cadete</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contacto -->
-    <section id="contacto" class="contact">
-        <div class="container">
-            <h2 class="section-title">Contacto</h2>
-            <div class="contact-container">
-                <div class="contact-form">
-                    <form id="form-contacto">
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono">
-                        </div>
-                        <div class="form-group">
-                            <label for="asunto">Asunto</label>
-                            <select id="asunto" name="asunto" required>
-                                <option value="">Seleccione un asunto</option>
-                                <option value="admision">Admisión</option>
-                                <option value="informacion">Información General</option>
-                                <option value="visita">Visita al Colegio</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Enviar Mensaje</button>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Dirección</h3>
-                            <p>Av. Patriotismo 123, Lima, Perú</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Teléfono</h3>
-                            <p>(01) 456-7890</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                            <p>info@colegiochavin.edu.pe</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h3>Horario de Atención</h3>
-                            <p>Lunes a Viernes: 7:00 am - 4:00 pm</p>
-                            <p>Sábados: 8:00 am - 12:00 pm</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-share-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Síguenos en Redes Sociales</h3>
-                            <div class="social-links">
-                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="map" style="margin-top: 3rem;">
-                <!-- Mapa de Google Maps -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.948646686057!2d-77.04226192477643!3d-12.04686594085067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8ecc3b7b8c5%3A0x7e2e4a84d1e4f1b0!2sPlaza%20Mayor%20de%20Lima!5e0!3m2!1ses!2spe!4v1690834921063!5m2!1ses!2spe" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSIjZDRhZjM3IiBkPSJNNTAuMDEgMTMuMjJjLTIwLjM0IDAtMzYuOCAxNi40Ni0zNi44IDM2LjhzMTYuNDYgMzYuOCAzNi44IDM2LjggMzYuOC0xNi40NiAzNi44LTM2LjhTNzAuMzUgMTMuMjIgNTAuMDEgMTMuMjJ6Ii8+PHBhdGggZmlsbD0iIzJjNGMzYiIgZD0iTTUwLjAxIDM1LjQyYy04LjA3IDAtMTQuNiA2LjUzLTE0LjYgMTQuNnM2LjUzIDE0LjYgMTQuNiAxNC42IDE0LjYtNi41MyAxNC42LTE0LjZTNTguMDggMzUuNDIgNTAuMDEgMzUuNDJ6Ii8+PHBhdGggZmlsbD0iI2Q0YWYzNyIgZD0iTTU1LjAxIDUwLjQybC01IDVjLTAuMzkgMC4zOS0wLjM5IDEuMDIgMCAxLjQxIDAuMTkgMC4xOSAwLjQ1IDAuMjkgMC43IDAuMjlzMC41MS0wLjEgMC43LTAuMjlsNS01YzAuMzktMC4zOSAwLjM5LTEuMDIgMC0xLjQxUzU1LjQgNTAuMDMgNTUuMDEgNTAuNDJ6Ii8+PC9zdmc+" alt="Escudo Colegio Chavín de Huántar">
-                    <h2>Colegio Chavín de Huántar</h2>
-                </div>
-                <p>Formando líderes con honor, disciplina y patriotismo desde 1998.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h3>Enlaces Rápidos</h3>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#nosotros">Sobre Nosotros</a></li>
-                    <li><a href="#programas">Programas</a></li>
-                    <li><a href="#valores">Valores</a></li>
-                    <li><a href="#galeria">Galería</a></li>
-                    <li><a href="#testimonios">Testimonios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contacto</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Av. Patriotismo 123, Lima, Perú</p>
-                <p><i class="fas fa-phone"></i> (01) 456-7890</p>
-                <p><i class="fas fa-envelope"></i> info@colegiochavin.edu.pe</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Colegio Chavín de Huántar - Pre-Policial-Militar. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <!-- Asistente Virtual -->
-    <div class="chatbot" id="chatbot-toggle">
-        <i class="fas fa-robot"></i>
-    </div>
-    <div class="chatbot-window" id="chatbot-window">
-        <div class="chatbot-header">
-            <h3>Asistente Virtual</h3>
-            <div class="chatbot-close" id="chatbot-close">
-                <i class="fas fa-times"></i>
-            </div>
-        </div>
-        <div class="chatbot-body" id="chatbot-body">
-            <div class="chat-message bot-message">
-                ¡Hola! Soy el asistente virtual del Colegio Chavín de Huántar. ¿En qué puedo ayudarte hoy?
-            </div>
-            <div class="chat-message bot-message">
-                Puedo ayudarte con información sobre:
-                <br>- Admisión y matrículas
-                <br>- Programas académicos
-                <br>- Visitas al colegio
-                <br>- Requisitos de ingreso
-            </div>
-        </div>
-        <div class="chatbot-footer">
-            <input type="text" id="chatbot-input" placeholder="Escribe tu mensaje...">
-            <button id="chatbot-send"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
-    <script>
-        // Menú móvil
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Asistente Virtual
-        const chatbotToggle = document.getElementById('chatbot-toggle');
-        const chatbotWindow = document.getElementById('chatbot-window');
-        const chatbotClose = document.getElementById('chatbot-close');
-        const chatbotBody = document.getElementById('chatbot-body');
-        const chatbotInput = document.getElementById('chatbot-input');
-        const chatbotSend = document.getElementById('chatbot-send');
-
-        chatbotToggle.addEventListener('click', function() {
-            chatbotWindow.style.display = 'flex';
-        });
-
-        chatbotClose.addEventListener('click', function() {
-            chatbotWindow.style.display = 'none';
-        });
-
-        chatbotSend.addEventListener('click', sendMessage);
-        chatbotInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message === '') return;
-
-            // Agregar mensaje del usuario
-            const userMessage = document.createElement('div');
-            userMessage.className = 'chat-message user-message';
-            userMessage.textContent = message;
-            chatbotBody.appendChild(userMessage);
-
-            // Limpiar input
-            chatbotInput.value = '';
-
-            // Desplazar hacia abajo
-            chatbotBody.scrollTop = chatbotBody.scrollHeight;
-
-            // Respuesta del bot (simulada)
-            setTimeout(function() {
-                const botMessage = document.createElement('div');
-                botMessage.className = 'chat-message bot-message';
-                
-                let response = "Gracias por tu mensaje. Para información específica sobre admisiones, te recomiendo contactarnos directamente al (01) 456-7890 o completar el formulario de contacto en nuestra página web.";
-                
-                if (message.toLowerCase().includes('admision') || message.toLowerCase().includes('ingreso')) {
-                    response = "Para el proceso de admisión, necesitas: <br>1. Partida de nacimiento <br>2. Certificado de estudios <br>3. Fotografías <br>4. Examen médico <br>¿Te gustaría agendar una cita para más información?";
-                } else if (message.toLowerCase().includes('programa') || message.toLowerCase().includes('curso')) {
-                    response = "Ofrecemos programas de educación secundaria militar, preparación policial, instrucción de orden cerrado, educación física militar, tiro deportivo y liderazgo estratégico. ¿Te interesa alguno en particular?";
-                } else if (message.toLowerCase().includes('visita') || message.toLowerCase().includes('conocer')) {
-                    response = "Puedes agendar una visita al colegio los días martes y jueves de 9:00 am a 12:00 pm. ¿Te gustaría que te contactemos para coordinar?";
-                }
-                
-                botMessage.innerHTML = response;
-                chatbotBody.appendChild(botMessage);
-                
-                // Desplazar hacia abajo
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
-            }, 1000);
-        }
-
-        // Formulario de contacto
-        document.getElementById('form-contacto').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            this.reset();
-        });
-    </script>
+    <!-- Aquí continúan tus otras secciones (Nosotros, Programas, Valores, Galería, etc.) -->
 </body>
 </html>
