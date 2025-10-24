@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Colegio Chavín de Huántar - Pre-Policial Militar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        :root {
+        :root{
             --verde-militar: #2d5016;
             --amarillo-oro: #ffd700;
             --verde-oscuro: #1a3409;
             --gris-claro: #f4f4f4;
         }
 
-        body {
+        body{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
         }
 
         /* Navegación */
-        nav {
+        nav{
             background: linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro));
             color: white;
             padding: 1rem 0;
@@ -36,695 +32,147 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .nav-container {
+        .nav-container{
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
             padding: 0 2rem;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .logo{ display:flex; align-items:center; gap:1rem; }
+        .escudo{
+            width:60px;height:60px;background:var(--amarillo-oro);
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-size:2rem;border:3px solid white;
         }
 
-        .escudo {
-            width: 60px;
-            height: 60px;
-            background: var(--amarillo-oro);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            border: 3px solid white;
+        .nav-links{ display:flex; gap:2rem; list-style:none; }
+        .nav-links a{
+            color:white;text-decoration:none;font-weight:600;
+            transition: all .3s;padding:.5rem 1rem;border-radius:5px;
+        }
+        .nav-links a:hover{ background:var(--amarillo-oro); color:var(--verde-militar); transform:translateY(-2px); }
+
+        .mobile-menu{
+            display:none;
+            background:transparent;border:none;color:white;font-size:1.5rem;cursor:pointer;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+        /* Hero */
+        .hero{ height:100vh; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:white; overflow:hidden; }
+        .hero-slider{ position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+        .hero-slide{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; transition:opacity 1.5s ease-in-out; background-size:cover; background-position:center; }
+        .hero-slide.active{ opacity:1; }
+        .hero-slide::before{ content:''; position:absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(rgba(45,80,22,0.7), rgba(26,52,9,0.8)); }
+        .hero-content{ position:relative; z-index:10; }
+        .hero-content h1{ font-size:4rem; margin-bottom:1rem; text-shadow:3px 3px 6px rgba(0,0,0,0.5); animation:fadeInDown 1s; }
+        .hero-content p{ font-size:1.5rem; margin-bottom:2rem; animation:fadeInUp 1s; }
+        .cta-button{ background:var(--amarillo-oro); color:var(--verde-militar); padding:1rem 3rem; border:none; border-radius:50px; font-size:1.2rem; font-weight:bold; cursor:pointer; transition:all .3s; text-decoration:none; display:inline-block; animation:pulse 2s infinite; }
+        .cta-button:hover{ background:white; transform:scale(1.1); box-shadow:0 5px 20px rgba(255,215,0,0.5); }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
+        .slider-indicators{ position:absolute; bottom:30px; left:50%; transform:translateX(-50%); display:flex; gap:10px; z-index:10; }
+        .slider-indicator{ width:12px;height:12px;border-radius:50%; background:rgba(255,255,255,0.5); cursor:pointer; transition:all .3s; }
+        .slider-indicator.active{ background:var(--amarillo-oro); transform:scale(1.3); }
 
-        .nav-links a:hover {
-            background: var(--amarillo-oro);
-            color: var(--verde-militar);
-            transform: translateY(-2px);
-        }
+        /* Sections */
+        section{ padding:5rem 2rem; max-width:1200px; margin:0 auto; }
+        .section-title{ text-align:center; font-size:2.5rem; color:var(--verde-militar); margin-bottom:1rem; position:relative; padding-bottom:1rem; }
+        .section-title::after{ content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:100px; height:4px; background:var(--amarillo-oro); }
 
-        /* Hero Section con Slider */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            overflow: hidden;
-        }
-
-        .hero-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(45, 80, 22, 0.7), rgba(26, 52, 9, 0.8));
-        }
-
-        /* Slides individuales - CAMBIA ESTAS URLs POR TUS IMÁGENES */
-        .hero-slide-1 {
-            background-image: url('https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1920');
-        }
-
-        .hero-slide-2 {
-            background-image: url('https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?w=1920');
-        }
-
-        .hero-slide-3 {
-            background-image: url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1920');
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            animation: fadeInDown 1s;
-        }
-
-        .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s;
-        }
-
-        /* Indicadores del slider */
-        .slider-indicators {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .slider-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .slider-indicator.active {
-            background: var(--amarillo-oro);
-            transform: scale(1.3);
-        }
-
-        .cta-button {
-            background: var(--amarillo-oro);
-            color: var(--verde-militar);
-            padding: 1rem 3rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            animation: pulse 2s infinite;
-        }
-
-        .cta-button:hover {
-            background: white;
-            transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
-        }
-
-        /* Secciones */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--verde-militar);
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--amarillo-oro);
-        }
-
-        /* Estadísticas */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro));
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--amarillo-oro);
-        }
+        /* Stats */
+        .stats{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:2rem; margin-top:3rem; }
+        .stat-card{ background:linear-gradient(135deg,var(--verde-militar),var(--verde-oscuro)); color:white; padding:2rem; border-radius:15px; text-align:center; transition:all .3s; box-shadow:0 5px 15px rgba(0,0,0,.2); }
+        .stat-card:hover{ transform:translateY(-10px); box-shadow:0 10px 30px rgba(255,215,0,0.3); }
+        .stat-number{ font-size:3rem; font-weight:bold; color:var(--amarillo-oro); }
 
         /* Programas */
-        .programas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .programa-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border: 3px solid transparent;
-        }
-
-        .programa-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--amarillo-oro);
-            box-shadow: 0 10px 30px rgba(45, 80, 22, 0.3);
-        }
-
-        .programa-icon {
-            background: linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro));
-            color: var(--amarillo-oro);
-            padding: 2rem;
-            font-size: 3rem;
-            text-align: center;
-        }
-
-        .programa-content {
-            padding: 2rem;
-        }
-
-        .programa-content h3 {
-            color: var(--verde-militar);
-            margin-bottom: 1rem;
-        }
+        .programas-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:2rem; margin-top:3rem; }
+        .programa-card{ background:white; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.1); transition:all .3s; border:3px solid transparent; }
+        .programa-card:hover{ transform:translateY(-10px); border-color:var(--amarillo-oro); box-shadow:0 10px 30px rgba(45,80,22,0.3); }
+        .programa-icon{ background:linear-gradient(135deg,var(--verde-militar),var(--verde-oscuro)); color:var(--amarillo-oro); padding:2rem; font-size:3rem; text-align:center; }
+        .programa-content{ padding:2rem; }
+        .programa-content h3{ color:var(--verde-militar); margin-bottom:1rem; }
 
         /* Valores */
-        .valores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .valor-card {
-            background: var(--gris-claro);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border-left: 5px solid var(--amarillo-oro);
-            transition: all 0.3s;
-        }
-
-        .valor-card:hover {
-            background: var(--verde-militar);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .valor-card i {
-            font-size: 3rem;
-            color: var(--amarillo-oro);
-            margin-bottom: 1rem;
-        }
+        .valores-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; margin-top:3rem; }
+        .valor-card{ background:var(--gris-claro); padding:2rem; border-radius:15px; text-align:center; border-left:5px solid var(--amarillo-oro); transition:all .3s; }
+        .valor-card:hover{ background:var(--verde-militar); color:white; transform:scale(1.05); }
+        .valor-card i{ font-size:3rem; color:var(--amarillo-oro); margin-bottom:1rem; }
 
         /* Galería */
-        .galeria-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin-top: 3rem;
-        }
-
-        .galeria-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            height: 250px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .galeria-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.3s;
-        }
-
-        .galeria-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .galeria-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, var(--verde-oscuro));
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: all 0.3s;
-        }
-
-        .galeria-item:hover .galeria-overlay {
-            transform: translateY(0);
-        }
+        .galeria-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1rem; margin-top:3rem; }
+        .galeria-item{ position:relative; overflow:hidden; border-radius:15px; height:250px; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,.2); background-size:cover; background-position:center; }
+        .galeria-overlay{ position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent, var(--verde-oscuro)); color:white; padding:1rem; transform:translateY(100%); transition:all .3s; }
+        .galeria-item:hover .galeria-overlay{ transform:translateY(0); }
 
         /* Testimonios */
-        .testimonios-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonio-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            position: relative;
-            border-top: 5px solid var(--amarillo-oro);
-        }
-
-        .testimonio-card i.quote {
-            font-size: 3rem;
-            color: var(--amarillo-oro);
-            opacity: 0.3;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-
-        .testimonio-autor {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .testimonio-avatar {
-            width: 60px;
-            height: 60px;
-            background: var(--verde-militar);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--amarillo-oro);
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+        .testimonios-container{ display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:2rem; margin-top:3rem; }
+        .testimonio-card{ background:white; padding:2rem; border-radius:15px; box-shadow:0 5px 20px rgba(0,0,0,.1); position:relative; border-top:5px solid var(--amarillo-oro); }
+        .testimonio-card i.quote{ font-size:3rem; color:var(--amarillo-oro); opacity:.3; position:absolute; top:1rem; right:1rem; }
+        .testimonio-autor{ display:flex; align-items:center; gap:1rem; margin-top:1rem; }
+        .testimonio-avatar{ width:60px; height:60px; background:var(--verde-militar); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--amarillo-oro); font-size:1.5rem; font-weight:bold; }
 
         /* Formulario */
-        .form-container {
-            max-width: 600px;
-            margin: 3rem auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--verde-militar);
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--gris-claro);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--amarillo-oro);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: var(--amarillo-oro);
-            color: var(--verde-militar);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
+        .form-container{ max-width:600px; margin:3rem auto; background:white; padding:3rem; border-radius:15px; box-shadow:0 5px 30px rgba(0,0,0,.1); }
+        .form-group{ margin-bottom:1.5rem; }
+        .form-group label{ display:block; margin-bottom:.5rem; color:var(--verde-militar); font-weight:600; }
+        .form-group input, .form-group textarea, .form-group select{ width:100%; padding:.8rem; border:2px solid var(--gris-claro); border-radius:8px; font-size:1rem; transition:all .3s; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus{ outline:none; border-color:var(--amarillo-oro); box-shadow:0 0 10px rgba(255,215,0,0.2); }
+        .submit-btn{ width:100%; padding:1rem; background:linear-gradient(135deg,var(--verde-militar),var(--verde-oscuro)); color:white; border:none; border-radius:8px; font-size:1.1rem; font-weight:bold; cursor:pointer; transition:all .3s; }
+        .submit-btn:hover{ background:var(--amarillo-oro); color:var(--verde-militar); transform:translateY(-2px); box-shadow:0 5px 15px rgba(255,215,0,0.3); }
 
         /* Mapa */
-        .mapa-container {
-            margin-top: 3rem;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .mapa-container iframe {
-            width: 100%;
-            height: 450px;
-            border: none;
-        }
+        .mapa-container{ margin-top:3rem; border-radius:15px; overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,.2); }
+        .mapa-container iframe{ width:100%; height:450px; border:none; }
 
         /* Redes Sociales */
-        .social-section {
-            background: var(--gris-claro);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .social-btn {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            transition: all 0.3s;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-10px) scale(1.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .social-btn.facebook { background: #1877f2; }
-        .social-btn.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .social-btn.twitter { background: #1da1f2; }
-        .social-btn.youtube { background: #ff0000; }
-        .social-btn.tiktok { background: #000000; }
+        .social-section{ background:var(--gris-claro); padding:3rem 2rem; text-align:center; }
+        .social-buttons{ display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-top:2rem; }
+        .social-btn{ width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:white;transition:all .3s;cursor:pointer;text-decoration:none; }
+        .social-btn:hover{ transform:translateY(-10px) scale(1.1); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+        .social-btn.facebook{ background:#1877f2; }
+        .social-btn.instagram{ background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+        .social-btn.twitter{ background:#1da1f2; }
+        .social-btn.youtube{ background:#ff0000; }
+        .social-btn.tiktok{ background:#000; }
 
         /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--verde-oscuro), var(--verde-militar));
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
+        footer{ background:linear-gradient(135deg,var(--verde-oscuro),var(--verde-militar)); color:white; padding:3rem 2rem; text-align:center; }
+        .footer-content{ max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; }
+        .footer-section h3{ color:var(--amarillo-oro); margin-bottom:1rem; }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
+        /* Chat */
+        .chat-button{ position:fixed; bottom:30px; right:30px; width:70px;height:70px;background:linear-gradient(135deg,var(--verde-militar),var(--verde-oscuro)); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--amarillo-oro); font-size:2rem; cursor:pointer; box-shadow:0 5px 20px rgba(0,0,0,.3); transition:all .3s; z-index:999; }
+        .chat-button:hover{ transform:scale(1.1); box-shadow:0 10px 30px rgba(255,215,0,0.5); }
+        .chat-window{ position:fixed; bottom:120px; right:30px; width:350px; height:500px; background:white; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,.3); display:none; flex-direction:column; z-index:998; overflow:hidden; }
+        .chat-window.active{ display:flex; }
+        .chat-header{ background:linear-gradient(135deg,var(--verde-militar),var(--verde-oscuro)); color:white; padding:1rem; display:flex; justify-content:space-between; align-items:center; }
+        .chat-messages{ flex:1; padding:1rem; overflow-y:auto; background:var(--gris-claro); }
+        .chat-message{ margin-bottom:1rem; padding:.8rem; border-radius:10px; max-width:80%; }
+        .chat-message.bot{ background:white; margin-right:auto; }
+        .chat-message.user{ background:var(--verde-militar); color:white; margin-left:auto; }
+        .chat-input-container{ padding:1rem; background:white; border-top:1px solid #ddd; display:flex; gap:.5rem; }
+        .chat-input{ flex:1; padding:.8rem; border:2px solid var(--gris-claro); border-radius:25px; outline:none; }
+        .chat-send{ background:var(--verde-militar); color:var(--amarillo-oro); border:none; padding:.8rem 1.5rem; border-radius:25px; cursor:pointer; transition:all .3s; }
+        .chat-send:hover{ background:var(--amarillo-oro); color:var(--verde-militar); }
 
-        .footer-section h3 {
-            color: var(--amarillo-oro);
-            margin-bottom: 1rem;
-        }
-
-        /* Asistente Virtual */
-        .chat-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--amarillo-oro);
-            font-size: 2rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-            z-index: 999;
-        }
-
-        .chat-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-        }
-
-        .chat-window {
-            position: fixed;
-            bottom: 120px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            display: none;
-            flex-direction: column;
-            z-index: 998;
-            overflow: hidden;
-        }
-
-        .chat-window.active {
-            display: flex;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro));
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background: var(--gris-claro);
-        }
-
-        .chat-message {
-            margin-bottom: 1rem;
-            padding: 0.8rem;
-            border-radius: 10px;
-            max-width: 80%;
-        }
-
-        .chat-message.bot {
-            background: white;
-            margin-right: auto;
-        }
-
-        .chat-message.user {
-            background: var(--verde-militar);
-            color: white;
-            margin-left: auto;
-        }
-
-        .chat-input-container {
-            padding: 1rem;
-            background: white;
-            border-top: 1px solid #ddd;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 0.8rem;
-            border: 2px solid var(--gris-claro);
-            border-radius: 25px;
-            outline: none;
-        }
-
-        .chat-send {
-            background: var(--verde-militar);
-            color: var(--amarillo-oro);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .chat-send:hover {
-            background: var(--amarillo-oro);
-            color: var(--verde-militar);
-        }
-
-        /* Animaciones */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
+        /* Animations */
+        @keyframes fadeInDown{ from{ opacity:0; transform:translateY(-50px);} to{ opacity:1; transform:translateY(0);} }
+        @keyframes fadeInUp{ from{ opacity:0; transform:translateY(50px);} to{ opacity:1; transform:translateY(0);} }
+        @keyframes pulse{ 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.05);} }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .chat-window {
-                width: 100%;
-                right: 0;
-                left: 0;
-                bottom: 100px;
-                border-radius: 15px 15px 0 0;
-            }
+        @media (max-width:768px){
+            .nav-links{ display:none; }
+            .mobile-menu{ display:block; }
+            .hero-content h1{ font-size:2.5rem; }
+            .hero-content p{ font-size:1.2rem; }
+            .chat-window{ width:100%; right:0; left:0; bottom:100px; border-radius:15px 15px 0 0; }
         }
 
-        .bg-alt {
-            background: var(--gris-claro);
-        }
+        .bg-alt{ background:var(--gris-claro); }
     </style>
 </head>
 <body>
@@ -735,10 +183,15 @@
                 <div class="escudo">🛡️</div>
                 <div>
                     <h2>Colegio Chavín de Huántar</h2>
-                    <p style="font-size: 0.9rem; opacity: 0.9;">Pre-Policial Militar</p>
+                    <p style="font-size:0.9rem;opacity:0.9;">Pre-Policial Militar</p>
                 </div>
             </div>
-            <ul class="nav-links">
+
+            <button class="mobile-menu" id="mobile-menu-btn" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#programas">Programas</a></li>
@@ -752,27 +205,29 @@
 
     <!-- Hero Section con Slider -->
     <section id="inicio" class="hero">
-        <div class="hero-slider">
-            <div class="hero-slide hero-slide-1 active"></div>
-            <div class="hero-slide hero-slide-2"></div>
-            <div class="hero-slide hero-slide-3"></div>
+        <div class="hero-slider" id="hero-slider">
+            <div class="hero-slide hero-slide-1 active" style="background-image:url('https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1920');"></div>
+            <div class="hero-slide hero-slide-2" style="background-image:url('https://images.unsplash.com/photo-1577471488278-16eec37ffcc2?w=1920');"></div>
+            <div class="hero-slide hero-slide-3" style="background-image:url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1920');"></div>
         </div>
+
         <div class="hero-content">
             <h1>FORJANDO LÍDERES DEL MAÑANA</h1>
             <p>Disciplina • Honor • Excelencia Académica</p>
             <a href="#contacto" class="cta-button">¡INSCRÍBETE AHORA!</a>
         </div>
-        <div class="slider-indicators">
-            <div class="slider-indicator active" onclick="goToSlide(0)"></div>
-            <div class="slider-indicator" onclick="goToSlide(1)"></div>
-            <div class="slider-indicator" onclick="goToSlide(2)"></div>
+
+        <div class="slider-indicators" id="slider-indicators">
+            <div class="slider-indicator active" data-index="0"></div>
+            <div class="slider-indicator" data-index="1"></div>
+            <div class="slider-indicator" data-index="2"></div>
         </div>
     </section>
 
     <!-- Sobre Nosotros -->
     <section id="nosotros">
         <h2 class="section-title">Sobre Nosotros</h2>
-        <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 2rem auto;">
+        <p style="text-align:center;font-size:1.2rem;max-width:800px;margin:2rem auto;">
             El Colegio Chavín de Huántar es una institución educativa comprometida con la formación integral de futuros líderes. Combinamos excelencia académica con valores militares para desarrollar ciudadanos disciplinados, responsables y patriotas.
         </p>
 
@@ -877,308 +332,350 @@
             <div class="valor-card">
                 <i class="fas fa-users"></i>
                 <h3>Compañerismo</h3>
-                <p>Fortalecemos los lazos de hermandad</p>   015950015     015950000  2    
+                <p>Fortalecemos los lazos de hermandad</p>
             </div>
         </div>
     </section>
 
     <!-- Galería -->
-   <!-- Galería -->
     <section id="galeria" class="galeria">
         <div class="container">
-            <h2 clase="título de la sección">Galería fotográfica</h2>
+            <h2 class="section-title">Galería fotográfica</h2>
             <div class="galeria-grid">
-                <div class="galeria-item">estilo="imagen de fondo: url('https://images.unsplash.com/photo-1582053433976-0c6c0b1b4d7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></división>
-                <división clase="elemento de galería"estilo="imagen de fondo: url('https://images.unsplash.com/photo-1540324155972-2b74915c6f59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></división>
-                <división clase="elemento de galería"estilo="imagen de fondo: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></división>
-                <división clase="elemento de galería"estilo="imagen de fondo: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></división>
-                <división clase="elemento de galería"estilo="imagen de fondo: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></división>
-                <división clase="elemento de galería"estilo="imagen de fondo: url('https://images.unsplash.com/photo-1551524164-6ca5f2c47697?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></división>
-            </división>
-        </división>
-    </sección>
+                <div class="galeria-item" style="background-image:url('https://images.unsplash.com/photo-1582053433976-0c6c0b1b4d7c?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="galeria-overlay"><p>Entrenamiento</p></div>
+                </div>
+                <div class="galeria-item" style="background-image:url('https://images.unsplash.com/photo-1540324155972-2b74915c6f59?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="galeria-overlay"><p>Formación Académica</p></div>
+                </div>
+                <div class="galeria-item" style="background-image:url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="galeria-overlay"><p>Ceremonia</p></div>
+                </div>
+                <div class="galeria-item" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="galeria-overlay"><p>Actividades</p></div>
+                </div>
+                <div class="galeria-item" style="background-image:url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="galeria-overlay"><p>Comunidad</p></div>
+                </div>
+                <div class="galeria-item" style="background-image:url('https://images.unsplash.com/photo-1551524164-6ca5f2c47697?auto=format&fit=crop&w=1200&q=80');">
+                    <div class="galeria-overlay"><p>Entrenamiento Físico</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Testimonios -->
-    <sección identificación="testimonios"clase="testimonios">
+    <section id="testimonios">
         <div class="container">
-            <h2 clase="título de la sección">Testimonios</h2>
-            <división clase="Testimonios-deslizador">
-                <división clase="tarjeta testimonial">
-                    <pag clase="texto testimonial">"El Colegio Chavín de Huántar formó a mi hijo con valores sólidos y disciplina. Hoy es un oficial ejemplar en la Marina de Guerra."</pag>
-                    <división clase="testimonio-autor">
-                        <división clase="avatar del autor"></división>
-                        <división clase="información del autor">
+            <h2 class="section-title">Testimonios</h2>
+            <div class="testimonios-container">
+                <div class="testimonio-card">
+                    <i class="fas fa-quote-right quote"></i>
+                    <p>"El Colegio Chavín de Huántar formó a mi hijo con valores sólidos y disciplina. Hoy es un oficial ejemplar en la Marina de Guerra."</p>
+                    <div class="testimonio-autor">
+                        <div class="testimonio-avatar">CM</div>
+                        <div>
                             <h4>Carlos Mendoza</h4>
-                            <pag>Padre de Familia</pag>
-                        </división>
-                    </división>
-                </división>
-                <división clase="tarjeta testimonial">
-                    <pag clase="texto testimonial">"La formación que recibí no solo para ingresar a la PNP, sino para enfrentar cualquier desafío en la vida con integridad y determinación".</pag>
-                    <división clase="testimonio-autor">
-                        <división clase="avatar del autor"></división>
-                        <división clase="información del autor">
+                            <p>Padre de Familia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonio-card">
+                    <i class="fas fa-quote-right quote"></i>
+                    <p>"La formación que recibí no solo me preparó para ingresar a la PNP, sino para enfrentar cualquier desafío en la vida con integridad y determinación."</p>
+                    <div class="testimonio-autor">
+                        <div class="testimonio-avatar">AT</div>
+                        <div>
                             <h4>Ana Torres</h4>
-                            <pag>Egresada - Oficial PNP</pag>
-                        </división>
-                    </división>
-                </división>
-                <división clase="tarjeta testimonial">
-                    <pag clase="texto testimonial">"Como cadete, valoro la disciplina y el compañerismo que se fomenta en esta institución. Estamos preparados para servir a nuestro país".</pag>
-                    <división clase="testimonio-autor">
-                        <división clase="avatar del autor"></división>
-                        <división clase="información del autor">
+                            <p>Egresada - Oficial PNP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonio-card">
+                    <i class="fas fa-quote-right quote"></i>
+                    <p>"Como cadete, valoro la disciplina y el compañerismo que se fomenta en esta institución. Estamos preparados para servir a nuestro país."</p>
+                    <div class="testimonio-autor">
+                        <div class="testimonio-avatar">LR</div>
+                        <div>
                             <h4>Luis Ramírez</h4>
-                            <pag>Cadete</pag>
-                        </división>
-                    </división>
-                </división>
-            </división>
-        </división>
-    </sección>
+                            <p>Cadete</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contacto -->
-    <sección identificación="contacto"clase="contacto">
-        <división clase="recipiente">
-            <h2 clase="título de la sección">Contacto</h2>
-            <división clase="contenedor de contacto">
-                <división clase="formulario de contacto">
-                    <forma identificación="formulario de contacto">
-                        <división clase="grupo de formularios">
-                            <etiqueta para="nombre">Nombre Completo</etiqueta>
-                            <aporte tipo="texto"identificación="nombre"nombre="nombre"requerido>
-                        </división>
-                        <división clase="grupo de formularios">
-                            <etiqueta para="correo electrónico">Correo Electrónico</etiqueta>
-                            <aporte tipo="correo electrónico"identificación="correo electrónico"nombre="correo electrónico"requerido>
-                        </división>
-                        <división clase="grupo de formularios">
-                            <etiqueta para="teléfono">Teléfono</etiqueta>
-                            <aporte tipo="teléfono"identificación="teléfono"nombre="teléfono">
-                        </división>
-                        <división clase="grupo de formularios">
-                            <etiqueta para="asunto">Asunto</etiqueta>
-                            <seleccionar identificación="asunto"nombre="asunto"requerido>
-                                <opción valor="">Seleccione un asunto</opción>
-                                <opción valor="admisión">Admisión</opción>
-                                <opción valor="Información">Información general</opción>
-                                <opción valor="visita">Visita al Colegio</opción>
-                                <opción valor="otro">Otro</opción>
-                            </seleccionar>
-                        </división>
-                        <división clase="grupo de formularios">
-                            <etiqueta para="mensaje">Mensaje</etiqueta>
-                            <área de texto identificación="mensaje"nombre="mensaje"requerido></área de texto>
-                        </división>
-                        <botón tipo="entregar"clase="botón">Enviar mensaje</botón>
-                    </forma>
-                </división>
-                <división clase="información de contacto">
-                    <división clase="elemento de contacto">
-                        <división clase="icono de contacto">
-                            <i clase="fas fa-map-marker-alt"></i>
-                        </división>
-                        <división>
-                            <h3>Dirección</h3>
-                            <pag>AV. Patriotismo 123, Lima, Perú</pag>
-                        </división>
-                    </división>
-                    <división clase="elemento de contacto">
-                        <división clase="icono de contacto">
-                            <i clase="fas fa-teléfono"></i>
-                        </división>
-                        <división>
-                            <h3>Teléfono</h3>
-                            <pag>(01) 456-7890</pag>
-                        </división>
-                    </división>
-                    <división clase="elemento de contacto">
-                        <división clase="icono de contacto">
-                            <i clase="fas fa-sobre"></i>
-                        </división>
-                        <división>
-                            <h3>Correo electrónico</h3>
-                            <pag>info@colegiochavin.edu.pe</pag>
-                        </división>
-                    </división>
-                    <división clase="elemento de contacto">
-                        <división clase="icono de contacto">
-                            <i clase="fas fa-clock"></i>
-                        </división>
-                        <división>
-                            <h3>Horario de Atención</h3>
-                            <pag>Lunes a Viernes: 7:00 am - 4:00 pm</pag>
-                            <pag>Sábados: 8:00 am - 12:00 pm</pag>
-                        </división>
-                    </división>
-                    <división clase="elemento de contacto">
-                        <división clase="icono de contacto">
-                            <i clase="fas fa-share-alt"></i>
-                        </división>
-                        <división>
-                            <h3>Síguenos en Redes Sociales</h3>
-                            <división clase="enlaces sociales">
-                                <a href="#"clase="enlace social"><i clase="fabuloso fa-facebook-f"></i></a>
-                                <a href="#"clase="enlace social"><i clase="fabuloso fa-instagram"></i></a>
-                                <a href="#"clase="enlace social"><i clase="fabuloso fa-twitter"></i></a>
-                                <a href="#"clase="enlace social"><i clase="fabuloso fa-youtube"></i></a>
-                                <a href="#"clase="enlace social"><i clase="fabuloso fa-tiktok"></i></a>
-                            </división>
-                        </división>
-                    </división>
-                </división>
-            </división>
-            <división clase="mapa"estilo="margen superior: 3rem;">
-                <!-- Mapa de Google Maps -->
-                <iframe origen="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.948646686057!2d-77.04226192477643!3d-12.04686594085067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8ecc3b7b8c5%3A0x7e2e4a84d1e4f1b0!2sPlaza%20Alcalde%20de%20Lima!5e0!3m2!1ses!2spe!4v1690834921063!5m2!1ses!2spe"ancho="100%"altura="100%"estilo="borde:0;"permitir pantalla completa=""cargando="perezoso"política de referencia="sin referencia al bajar de categoría"></iframe>
-            </división>
-        </división>
-    </sección>
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
 
-    <!-- Pie de página -->
-    <pie de página>
-        <división clase="contenido del pie de página">
-            <división clase="pie de página-acerca de">
-                <división clase="logotipo de pie de página">
-                    <imagen origen="datos:imagen/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSIjZDRhZjM3IiBkPSJNNTAuMDEgMTMuMjJjLTIwLjM0IDAtMzYuOC AxNi40Ni0zNi44IDM2LjhzMTYuNDYgMzYuOCAzNi44IDM2LjggMzYuOC0xNi40NiAzNi44LTM2LjhTNzAuMzUgMT MuMjIgNTAuMDEgMTMuMjJ6Ii8+PHBhdGggZmlsbD0iIzJjNGMzYiIgZD0iTTUwLjAxIDM1LjQyYy04LjA3IDAtMTQ uNiA2LjUzLTE0LjYgMTQuNnM2LjUzIDE0LjYgMTQuNiAxNC42IDE0LjYtNi41MyAxNC42LTE0LjZTNTguMDggMzU unNDIgNTAuMDEgMzUuNDJ6Ii8+PHBhdGggZmlsbD0iI2Q0YWYzNyIgZD0iTTU1LjAxIDUwLjQybC01IDVjLTAuMzk gMC4zOS0wLjM5IDEuMDIgMCAxLjQxIDAuMTkgMC4xOSAwLjQ1IDAuMjkgMC43IDAuMjlzMC41MS0wLjEgMC43LTAuMjlsNS01YzAuMzktMC4zOSAwLjM5LTEuMDIgMC0xLjQxUzU1LjQgNTAuMDMgNTUuMDEgNTAuNDJ6Ii8+PC9zdmc+"alt="Escudo Colegio Chavín de Huántar">
-                    <h2>Colegio Chavín de Huántar</h2>
-                </división>
-                <pag>Formando líderes con honor, disciplina y patriotismo desde 1998.</pag>
-                <división clase="pie de página-social">
-                    <a href="#"clase="enlace social"><i clase="fabuloso fa-facebook-f"></i></a>
-                    <a href="#"clase="enlace social"><i clase="fabuloso fa-instagram"></i></a>
-                    <a href="#"clase="enlace social"><i clase="fabuloso fa-twitter"></i></a>
-                    <a href="#"clase="enlace social"><i clase="fabuloso fa-youtube"></i></a>
-                    <a href="#"clase="enlace social"><i clase="fabuloso fa-tiktok"></i></a>
-                </división>
-            </división>
-            <división clase="enlaces de pie de página">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; align-items:start; margin-top:2rem;">
+                <div>
+                    <form id="formulario-contacto" class="form-container" novalidate>
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <input type="email" id="correo" name="correo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" pattern="[0-9+()\- ]*">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="asunto">Asunto</label>
+                            <select id="asunto" name="asunto" required>
+                                <option value="">Seleccione un asunto</option>
+                                <option value="admisión">Admisión</option>
+                                <option value="información">Información general</option>
+                                <option value="visita">Visita al Colegio</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Enviar mensaje</button>
+                    </form>
+                </div>
+
+                <div>
+                    <div style="background:white;padding:2rem;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;">
+                            <div style="font-size:1.5rem;color:var(--verde-militar);"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h3>Dirección</h3>
+                                <p>AV. Patriotismo 123, Lima, Perú</p>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;">
+                            <div style="font-size:1.5rem;color:var(--verde-militar);"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <h3>Teléfono</h3>
+                                <p>(01) 456-7890</p>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;">
+                            <div style="font-size:1.5rem;color:var(--verde-militar);"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h3>Correo electrónico</h3>
+                                <p>info@colegiochavin.edu.pe</p>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem;">
+                            <div style="font-size:1.5rem;color:var(--verde-militar);"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <h3>Horario de Atención</h3>
+                                <p>Lunes a Viernes: 7:00 am - 4:00 pm</p>
+                                <p>Sábados: 8:00 am - 12:00 pm</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3>Síguenos en Redes Sociales</h3>
+                            <div style="display:flex;gap:0.5rem;margin-top:0.5rem;">
+                                <a href="#" class="social-btn facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="social-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-btn twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-btn youtube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="social-btn tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mapa-container" style="margin-top:1.5rem;">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.948646686057!2d-77.04226192477643!3d-12.04686594085067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8ecc3b7b8c5%3A0x7e2e4a84d1e4f1b0!2sPlaza%20Alcalde%20de%20Lima!5e0!3m2!1ses!2spe!4v1690834921063!5m2!1ses!2spe"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div style="display:flex;gap:1rem;align-items:center;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSIjZDRhZjM3IiBkPSJNNTAuMDEgMTMuMjJjLTIwLjM0IDAtMzYuOCAxNi40Ni0zNi44IDM2LjhzMTYuNDYgMzYuOCAzNi44IDM2LjggMzYuOC0xNi40NiAzNi44LTM2LjhTNzAuMzUgMTMuMjIgNTAuMDEgMTMuMjJ6Ii8+PHBhdGggZmlsbD0iIzJjNGMzYiIgZD0iTTUwLjAxIDM1LjQyYy04LjA3IDAtMTQuNiA2LjUzLTE0LjYgMTQuNnM2LjUzIDE0LjYgMTQuNiAxNC42IDE0LjYtNi41MyAxNC42LTE0LjZTNTguMDggMzUunNDIgNTAuMDEgMzUuNDJ6Ii8+PHBhdGggZmlsbD0iI2Q0YWYzNyIgZD0iTTU1LjAxIDUwLjQybC01IDVjLTAuMzk gMC4zOS0wLjM5IDEuMDIgMCAxLjQxIDAuMTkgMC4xOSAwLjQ1IDAuMjkgMC43IDAuMjlzMC41MS0wLjEgMC43LTAuMjlsNS01YzAuMzktMC4zOSAwLjM5LTEuMDIgMC0xLjQxUzU1LjQgNTAuMDMgNTUuMDEgNTAuNDJ6Ii8+PC9zdmc+" alt="Escudo" style="width:60px;height:60px;">
+                    <div>
+                        <h2>Colegio Chavín de Huántar</h2>
+                        <p>Formando líderes con honor, disciplina y patriotismo desde 1998.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top:1rem;">
+                    <a href="#" class="social-btn facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
                 <h3>Enlaces rápidos</h3>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#nosotros">Sobre Nosotros</a></li>
-                    <li><a href="#programas">Programas</a></li>
-                    <li><a href="#valores">Valores</a></li>
-                    <li><a href="#galería">Galería</a></li>
-                    <li><a href="#testimonios">Testimonios</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                <ul style="list-style:none;">
+                    <li><a href="#inicio" style="color:white;text-decoration:none;">Inicio</a></li>
+                    <li><a href="#nosotros" style="color:white;text-decoration:none;">Sobre Nosotros</a></li>
+                    <li><a href="#programas" style="color:white;text-decoration:none;">Programas</a></li>
+                    <li><a href="#valores" style="color:white;text-decoration:none;">Valores</a></li>
+                    <li><a href="#galeria" style="color:white;text-decoration:none;">Galería</a></li>
+                    <li><a href="#testimonios" style="color:white;text-decoration:none;">Testimonios</a></li>
+                    <li><a href="#contacto" style="color:white;text-decoration:none;">Contacto</a></li>
                 </ul>
-            </división>
-            <división clase="pie de página-contacto">
+            </div>
+
+            <div class="footer-section">
                 <h3>Contacto</h3>
-                <pag><i clase="fas fa-map-marker-alt"></i>AV. Patriotismo 123, Lima, Perú</pag>
-                <pag><i clase="fas fa-teléfono"></i>(01) 456-7890</pag>
-                <pag><i clase="fas fa-sobre"></i>info@colegiochavin.edu.pe</pag>
-            </división>
-        </división>
-        <división clase="pie de página inferior">
-            <pag>&copy; 2023 Colegio Chavín de Huántar - Pre-Policial-Militar. Todos los derechos reservados.</pag>
-        </división>
-    </pie de página>
+                <p><i class="fas fa-map-marker-alt"></i> AV. Patriotismo 123, Lima, Perú</p>
+                <p><i class="fas fa-phone"></i> (01) 456-7890</p>
+                <p><i class="fas fa-envelope"></i> info@colegiochavin.edu.pe</p>
+            </div>
+        </div>
+
+        <div style="margin-top:2rem;">
+            <p>&copy; 2023 Colegio Chavín de Huántar - Pre-Policial-Militar. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <!-- Asistente virtual -->
-    <división clase="chatbot"identificación="alternar chatbot">
-        <i clase="fas fa-robot"></i>
-    </división>
-    <división clase="ventana del chatbot"identificación="ventana del chatbot">
-        <división clase="encabezado del chatbot">
-            <h3>Asistente virtual</h3>
-            <división clase="chatbot-cerrado"identificación="chatbot-cerrado">
-                <i clase="fas fa-times"></i>
-            </división>
-        </división>
-        <división clase="cuerpo del chatbot"identificación="cuerpo del chatbot">
-            <división clase="mensaje de chat bot-mensaje">
-                ¡Hola! Soy el asistente virtual del Colegio Chavín de Huántar. ¿En qué puedo ayudarte hoy?
-            </división>
-            <división clase="mensaje de chat bot-mensaje">
-                Puedo ayudarte con información sobre:
-                <es>- Admisión y matrículas
-                <es>- Programas académicos
-                <es>- Visitas al colegio
-                <es>- Requisitos de ingreso
-            </división>
-        </división>
-        <división clase="pie de página del chatbot">
-            <aporte tipo="texto"identificación="entrada del chatbot"marcador de posición="Escribe tu mensaje...">
-            <botón identificación="chatbot-enviar"><i clase="fas fa-avión de papel"></i></botón>
-        </división>
-    </división>
+    <button class="chat-button" id="chatbot-toggle" aria-label="Abrir asistente">
+        <i class="fas fa-robot"></i>
+    </button>
 
-    <guion>
-        // Menú móvil
-        documento.Selector de consultas('.menú móvil').agregarListener de eventos('hacer clic', función() {
-            documento.Selector de consultas('.nav-links').lista de clases.palanca('activo');
-        });
+    <div class="chat-window" id="chatbot-window" role="dialog" aria-hidden="true" aria-label="Asistente virtual">
+        <div class="chat-header">
+            <strong>Asistente virtual</strong>
+            <button id="chatbot-close" style="background:transparent;border:none;color:white;font-size:1.1rem;cursor:pointer;"><i class="fas fa-times"></i></button>
+        </div>
 
-        //Asistente Virtual
-        constante Alternar chatbot = documento.obtenerElementoPorId('chatbot-alternar');
-        constante Ventana del chatbot = documento.obtenerElementoPorId('ventana de chatbot');
-        constante chatbotCerrar = documento.obtenerElementoPorId('chatbot-close');
-        constante Cuerpo del chatbot = documento.obtenerElementoPorId('cuerpo del chatbot');
-        constante Entrada del chatbot = documento.obtenerElementoPorId('entrada de chatbot');
-        constante chatbotEnviar = documento.obtenerElementoPorId('chatbot-enviar');
+        <div class="chat-messages" id="chat-messages">
+            <div class="chat-message bot">¡Hola! Soy el asistente virtual del Colegio Chavín de Huántar. ¿En qué puedo ayudarte hoy?</div>
+            <div class="chat-message bot">Puedo ayudarte con información sobre:<br> - Admisión y matrículas<br> - Programas académicos<br> - Visitas al colegio<br> - Requisitos de ingreso</div>
+        </div>
 
-        Alternar chatbot.agregarListener de eventos('hacer clic', función() {
-            Ventana del chatbot.estilo.mostrar = 'doblar';
-        });
+        <div class="chat-input-container">
+            <input id="chatbot-input" class="chat-input" type="text" placeholder="Escribe tu mensaje...">
+            <button id="chatbot-send" class="chat-send" aria-label="Enviar"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
 
-        chatbotCerrar.agregarListener de eventos('hacer clic', función() {
-            Ventana del chatbot.estilo.mostrar = 'ninguno';
-        });
-
-        chatbotEnviar.agregarListener de eventos('hacer clic', enviarMensaje);
-        Entrada del chatbot.agregarListener de eventos('pulsación de tecla', función(mi) {
-            si (mi.llave === 'Ingresar') {
-                enviarMensaje();
+    <script>
+        // Slider
+        (function(){
+            const slides = Array.from(document.querySelectorAll('.hero-slide'));
+            const indicators = Array.from(document.querySelectorAll('.slider-indicator'));
+            let current = 0;
+            function goToSlide(index){
+                slides[current].classList.remove('active');
+                indicators[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                indicators[current].classList.add('active');
             }
+            function nextSlide(){ goToSlide(current + 1); }
+            let slideInterval = setInterval(nextSlide, 6000);
+            indicators.forEach(ind => ind.addEventListener('click', () => { clearInterval(slideInterval); goToSlide(parseInt(ind.dataset.index)); slideInterval = setInterval(nextSlide, 6000); }));
+            window.goToSlide = goToSlide; // kept for compatibility with any inline handlers
+        })();
+
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            if(navLinks.style.display === 'flex') navLinks.style.display = '';
+            else navLinks.style.display = navLinks.style.display === 'block' ? '' : 'block';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.gap = '0';
+            navLinks.style.background = 'linear-gradient(135deg, var(--verde-militar), var(--verde-oscuro))';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.right = '2rem';
+            navLinks.style.padding = '1rem';
+            navLinks.style.borderRadius = '8px';
         });
 
-        función enviarMensaje() {
-            constante mensaje = Entrada del chatbot.valor.recortar();
-            si (mensaje === ") devolver;
+        // Contact form
+        const form = document.getElementById('formulario-contacto');
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+            form.reset();
+        });
 
-            // Agregando mensaje del usuario
-            constante mensaje de usuario = documento.crearElemento('div');
-            mensaje de usuario.nombre de clase = 'mensaje de chat mensaje de usuario';
-            mensaje de usuario.Contenido del texto = mensaje;
-            Cuerpo del chatbot.añadirNiño(mensaje de usuario);
+        // Chatbot
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatbotInput = document.getElementById('chatbot-input');
+        const chatbotSend = document.getElementById('chatbot-send');
 
-            // Limpiar entrada
-            Entrada del chatbot.valor = ";
+        function scrollChatToBottom(){ chatMessages.scrollTop = chatMessages.scrollHeight; }
 
-            // Desplazar hacia abajo
-            Cuerpo del chatbot.desplazarse hacia arriba = Cuerpo del chatbot.altura de desplazamiento;
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+            chatbotWindow.setAttribute('aria-hidden', !chatbotWindow.classList.contains('active'));
+            scrollChatToBottom();
+            chatbotInput.focus();
+        });
 
-            // Respuesta del bot (simulada)
-            establecer tiempo de espera(función() {
-                constante mensaje de bot = documento.crearElemento('div');
-                mensaje de bot.nombre de clase = 'mensaje de bot de chat';
-                
-                dejar respuesta = "Gracias por tu mensaje. Para información específica sobre admisiones, te recomiendo contactarnos directamente al (01) 456-7890 o completar el formulario de contacto en nuestra página web.";
-                
-                si (mensaje.a minúsculas().incluye('admisión') || mensaje.a minúsculas().incluye('ingreso')) {
-                    respuesta = "Para el proceso de admisión, necesitas: <br>1. Partida de nacimiento <br>2. Certificado de estudios <br>3. Fotografías <br>4. Examen médico <br>¿Te gustaría agendar una cita para más información?";
-                } demás si (mensaje.a minúsculas().incluye('programa') || mensaje.a minúsculas().incluye('curso')) {
-                    respuesta = "Ofrecemos programas de educación secundaria militar, preparación policial, instrucción de orden cerrado, educación física militar, tiro deportivo y liderazgo estratégico. ¿Te interesa alguno en particular?";
-                } demás si (mensaje.a minúsculas().incluye('visita') || mensaje.a minúsculas().incluye('conocer')) {
-                    respuesta = "Puedes agendar una visita al colegio los días martes y jueves de 9:00 am a 12:00 pm. ¿Te gustaría que te contactemos para coordinar?";
-                }
-                
-                mensaje de bot.HTML interno = respuesta;
-                Cuerpo del chatbot.añadirNiño(mensaje de bot);
-                
-                // Desplazar hacia abajo
-                Cuerpo del chatbot.desplazarse hacia arriba = Cuerpo del chatbot.altura de desplazamiento;
-            }, 1000);
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+            chatbotWindow.setAttribute('aria-hidden', 'true');
+        });
+
+        function addMessage(text, sender='bot'){
+            const div = document.createElement('div');
+            div.className = 'chat-message ' + (sender === 'user' ? 'user' : 'bot');
+            div.innerHTML = text;
+            chatMessages.appendChild(div);
+            scrollChatToBottom();
         }
 
-        // Formulario de contacto
-        documento.obtenerElementoPorId('formulario-contacto').agregarListener de eventos('entregar', función(mi) {
-            mi.prevenirPredeterminado();
-            alerta('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            este.reiniciar();
+        function handleUserInput(){
+            const text = chatbotInput.value.trim();
+            if(!text) return;
+            addMessage(text, 'user');
+            chatbotInput.value = '';
+            // Simulated bot response
+            setTimeout(() => {
+                let response = "Gracias por tu mensaje. Para información específica sobre admisiones, te recomendamos contactarnos por teléfono o completar el formulario de contacto.";
+                const t = text.toLowerCase();
+                if(t.includes('admis') || t.includes('ingreso')) {
+                    response = "Para el proceso de admisión necesitas: 1) Partida de nacimiento 2) Certificado de estudios 3) Fotografías 4) Examen médico. ¿Deseas agendar una cita?";
+                } else if(t.includes('programa') || t.includes('curso')) {
+                    response = "Ofrecemos educación secundaria con énfasis policial/militar, entrenamiento físico, orden cerrado y liderazgo. ¿Cuál te interesa?";
+                } else if(t.includes('visita') || t.includes('conocer')) {
+                    response = "Puedes agendar una visita los martes y jueves de 9:00 a 12:00. ¿Quieres que coordinemos una visita?";
+                }
+                addMessage(response, 'bot');
+            }, 800);
+        }
+
+        chatbotSend.addEventListener('click', handleUserInput);
+        chatbotInput.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') handleUserInput();
         });
-    </guion>
-</cuerpo>
-</HTML>
+
+        // Ensure initial scroll
+        scrollChatToBottom();
+    </script>
+</body>
+</html>
